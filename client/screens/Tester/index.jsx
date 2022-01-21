@@ -9,6 +9,7 @@ import { StyleSheet, ScrollView, View, Modal, Pressable } from 'react-native';
 import { Text } from '../../components/Themed';
 import * as Location from 'expo-location';
 import axios from 'axios';
+import { googleLocationKey, weatherToken } from '../../constants/URLS';
 //======================================================
 export default function Tester({ navigation }) {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ export default function Tester({ navigation }) {
   const fetchWeather = () => {
     const { coords } = locationCoordinates;
     const { latitude, longitude } = coords;
-    const weatherResult = axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=8dd1bae28744ab1d233b8901ac42215f`)
+    const weatherResult = axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${weatherToken}`)
                                 .then((res) => {
                                   console.log(res);
                                 }).catch((err) => {
@@ -52,8 +53,8 @@ export default function Tester({ navigation }) {
     console.log('fetchLocationInfo()')
     const { coords } = locationCoordinates;
     const { latitude, longitude } = coords;
-    const API_KEY = 'AIzaSyAC6_z8V3K9DN-XKugwsp4jbeW3-u25n0A';
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&result_type=postal_code&key=${API_KEY}`;
+
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&result_type=postal_code&key=${googleLocationKey}`;
     console.log({url});
     axios.get(url)
       .then(res => {
