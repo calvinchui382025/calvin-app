@@ -79,7 +79,7 @@ function RootNavigator() {
           ),
         }}
       />
-      <Tab.Screen 
+      {/* <Tab.Screen 
         name="Forum" 
         component={Forum}
         options={{
@@ -126,7 +126,7 @@ function RootNavigator() {
             />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }
